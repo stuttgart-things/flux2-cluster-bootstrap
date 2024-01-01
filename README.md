@@ -35,4 +35,4 @@ limitations under the License.
 
 Author Information
 ------------------
-Patrick Hermann, stuttgart-things 04/2023
+Patrick Hermann, stuttgart-things 01/2024
