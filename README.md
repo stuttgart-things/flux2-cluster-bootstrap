@@ -1,9 +1,16 @@
 # flux2-cluster-bootstrap
 terraform module for bootstrapping kubernetes clusters w/ flux2
 
+## CALL MODULE
+
+```yaml
+
+```
+
 ## BOOTSTRAP CLUSTER W/ GITHUB
 
 ```bash
+terraform init
 terraform apply \
 -var "github_org=stuttgart-things" \
 -var "github_repository=stuttgart-things" \
