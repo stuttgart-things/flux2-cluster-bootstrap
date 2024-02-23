@@ -19,6 +19,6 @@ jobs:
     with:
       environment-name: k8s
       runs-on: arc-runner-scale-set-flux2-cluster-bootstrap
-      terraform-version: 1.6
+      terraform-version: 1.7.4
       tflint-version: v0.50.3
       continue-error: false
