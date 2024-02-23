@@ -4,17 +4,17 @@ terraform {
   required_providers {
     kubernetes = {
       source  = "hashicorp/kubernetes"
-      version = ">= 2.24.0"
+      version = ">= 2.26.0"
     }
 
     flux = {
       source = "fluxcd/flux"
-      version = "1.2.2"
+      version = "1.2.3"
     }
 
     github = {
       source  = "integrations/github"
-      version = ">=5.18.0"
+      version = "6.0.0"
     }
 
     tls = {

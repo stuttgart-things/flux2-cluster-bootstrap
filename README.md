@@ -1,23 +1,28 @@
 # flux2-cluster-bootstrap
 terraform module for bootstrapping kubernetes clusters w/ flux2
 
-## CALL MODULE
-
-```yaml
-
-```
-
 ## BOOTSTRAP CLUSTER W/ GITHUB
 
+```hcl
+module "bootstrap-app1" {
+  source            = "../../flux2-cluster-bootstrap"
+  kubeconfig_path   = "/home/sthings/.kube/app1"
+  github_token      = var.github_token
+  github_repository = "stuttgart-things"
+  github_org        = "stuttgart-things"
+  target_path       = "clusters/labul/pve/app1"
+}
+
+variable "github_token" { type= string }
+```
+
+## EXECUTION
+
 ```bash
+export TF_VAR_github_token=$GITHUB_TOKEN
 terraform init
-terraform apply \
--var "github_org=stuttgart-things" \
--var "github_repository=stuttgart-things" \
--var "github_token=<TOKEN>" \
--var "target_path=clusters/labda/vsphere/utah" \
--var "kubeconfig_path=/home/sthings/.kube/labda-utah" \
--var "context=utah"
+terraform plan
+terraform apply
 ```
 
 ## LICENSE
