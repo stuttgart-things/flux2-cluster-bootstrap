@@ -5,7 +5,7 @@ terraform module for bootstrapping kubernetes clusters w/ flux2
 
 ```hcl
 module "bootstrap-app1" {
-  source            = "../../flux2-cluster-bootstrap"
+  source            = "github.com/stuttgart-things/flux2-cluster-bootstrap"
   kubeconfig_path   = "/home/sthings/.kube/app1"
   github_token      = var.github_token
   github_repository = "stuttgart-things"
