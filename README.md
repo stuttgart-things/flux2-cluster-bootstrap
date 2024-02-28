@@ -11,6 +11,15 @@ module "bootstrap-app1" {
   github_repository = "stuttgart-things"
   github_org        = "stuttgart-things"
   target_path       = "clusters/labul/pve/app1"
+  secrets = [
+    {
+      name = "sops-age"
+      namespace = "flux-system"
+      kvs = {
+        "age.agekey" = "AGE-SECRET-KEY"
+      }
+    },
+  ]
 }
 
 variable "github_token" { type= string }
