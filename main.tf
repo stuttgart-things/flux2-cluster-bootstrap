@@ -14,6 +14,6 @@ provider "flux" {
 }
 
 resource "flux_bootstrap_git" "flux2" {
-  path = var.target_path
+  path       = var.target_path
   depends_on = [github_repository_deploy_key.ssh]
 }

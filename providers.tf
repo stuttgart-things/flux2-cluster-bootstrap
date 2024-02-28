@@ -8,8 +8,13 @@ terraform {
     }
 
     flux = {
-      source = "fluxcd/flux"
+      source  = "fluxcd/flux"
       version = "1.2.3"
+    }
+
+    kubectl = {
+      source  = "gavinbunney/kubectl"
+      version = ">= 1.14.0"
     }
 
     github = {
@@ -18,8 +23,13 @@ terraform {
     }
 
     tls = {
-      source = "hashicorp/tls"
+      source  = "hashicorp/tls"
       version = "4.0.5"
     }
   }
+}
+
+provider "kubernetes" {
+  config_context = var.context
+  config_path    = var.kubeconfig_path
 }

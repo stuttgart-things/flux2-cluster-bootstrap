@@ -32,3 +32,13 @@ variable "target_path" {
   default     = "staging-cluster"
   description = "flux sync target path"
 }
+
+variable "secrets" {
+  type = list(object({
+    name      = string
+    namespace = string
+    kvs       = map(string)
+  }))
+  default     = []
+  description = "A list of secret objects"
+}
