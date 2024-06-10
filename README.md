@@ -3,6 +3,25 @@ terraform module for bootstrapping kubernetes clusters w/ flux2
 
 ## BOOTSTRAP CLUSTER W/ GITHUB
 
+<details><summary><b>FLUX BOOSTRAP</b></summary>
+
+```hcl
+module "bootstrap-app1" {
+  source            = "github.com/stuttgart-things/flux2-cluster-bootstrap"
+  kubeconfig_path   = "/home/sthings/.kube/app1"
+  github_token      = var.github_token
+  github_repository = "stuttgart-things"
+  github_org        = "stuttgart-things"
+  target_path       = "clusters/labul/pve/app1"
+}
+
+variable "github_token" { type= string }
+```
+
+</details>
+
+<details><summary><b>FLUX BOOSTRAP + SECRET</b></summary>
+
 ```hcl
 module "bootstrap-app1" {
   source            = "github.com/stuttgart-things/flux2-cluster-bootstrap"
@@ -24,6 +43,52 @@ module "bootstrap-app1" {
 
 variable "github_token" { type= string }
 ```
+
+</details>
+
+<details><summary><b>FLUX BOOSTRAP + ADDITIONAL MANIFESTS & KUSTOMIZATION_PATCH</b></summary>
+
+```hcl
+module "bootstrap-app1" {
+  source            = "github.com/stuttgart-things/flux2-cluster-bootstrap"
+  kubeconfig_path   = "/home/sthings/.kube/app1"
+  github_token      = var.github_token
+  github_repository = "stuttgart-things"
+  github_org        = "stuttgart-things"
+  target_path       = "clusters/labul/pve/app1"
+  additional_manifests = [
+    {
+      content = <<-EOT
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ca-pemstore
+  namespace: flux-system
+data:
+  labul-pve.crt: |-
+    -----BEGIN CERTIFICATE-----
+EOT
+    },
+  ]
+
+  kustomization_patch = <<-EOT
+- patch: |
+    - op: add
+      path: /spec/template/spec/volumes/-
+      value:
+        name: ca-pemstore
+        configMap:
+          name: ca-pemstore
+  target:
+    kind: Deployment
+    name: source-controller
+EOT
+}
+
+variable "github_token" { type= string }
+```
+
+</details>
 
 ## EXECUTION
 

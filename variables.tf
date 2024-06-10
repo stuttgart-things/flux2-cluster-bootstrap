@@ -54,9 +54,10 @@ variable "configmaps" {
 }
 
 variable "kustomization_patch" {
-default = <<-EOT
-{}
-EOT
+  type        = string
+  default = <<-EOT
+  {}
+  EOT
   description = "patch"
 }
 
