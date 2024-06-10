@@ -17,12 +17,3 @@ resource "kubernetes_manifest" "k8s_secret" {
   ))
 
 }
-
-// KUBECONFIG FILE HANDLING
-data "local_file" "kubeconfig" {
-  filename = var.kubeconfig_path
-}
-
-locals {
-  kubeconfig = yamldecode(data.local_file.kubeconfig.content)
-}
