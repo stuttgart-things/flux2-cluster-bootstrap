@@ -46,7 +46,7 @@ variable "github_token" { type= string }
 
 </details>
 
-<details><summary><b>FLUX BOOSTRAP + ADDITIONAL MANIFESTS & KUSTOMIZATION_PATCH</b></summary>
+<details><summary><b>FLUX BOOSTRAP + ADDITIONAL MANIFESTS & KUSTOMIZATION PATCH</b></summary>
 
 ```hcl
 module "bootstrap-app1" {
