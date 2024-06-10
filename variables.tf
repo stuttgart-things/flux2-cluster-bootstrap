@@ -42,3 +42,28 @@ variable "secrets" {
   default     = []
   description = "A list of secret objects"
 }
+
+variable "configmaps" {
+  type = list(object({
+    name      = string
+    namespace = string
+    kvs       = map(string)
+  }))
+  default     = []
+  description = "A list of configmap objects"
+}
+
+variable "kustomization_patch" {
+default = <<-EOT
+{}
+EOT
+  description = "patch"
+}
+
+variable "additional_manifests" {
+  type = list(object({
+    content      = string
+  }))
+  default     = []
+  description = "A list of additional_manifests to deploy"
+}
