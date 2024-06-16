@@ -67,6 +67,7 @@ variable "configmaps" {
 
 variable "kustomization_patches" {
   type        = string
+  nullable    = true
   description = "kustomization_patches"
 }
 
