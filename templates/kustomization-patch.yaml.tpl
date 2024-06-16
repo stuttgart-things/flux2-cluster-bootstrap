@@ -6,5 +6,6 @@ resources:
   - gotk-sync.yaml
 %{ if length(patches) > 0 }
 patches:
-  ${patches}
+  - patch: |
+    ${patches}
 %{ endif }
