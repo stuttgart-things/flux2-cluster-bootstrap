@@ -4,6 +4,12 @@ variable "context" {
   description = "kube cluster context"
 }
 
+variable "components_extra" {
+  description = "Extra components"
+  type        = list(string)
+  default     = ["image-automation-controller"]
+}
+
 variable "kubeconfig_path" {
   type        = string
   default     = "~/.kube/config"
