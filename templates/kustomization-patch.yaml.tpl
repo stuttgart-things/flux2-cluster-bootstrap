@@ -4,5 +4,10 @@ kind: Kustomization
 resources:
   - gotk-components.yaml
   - gotk-sync.yaml
+%{ if length(patches) > 0 }
 patches:
-  ${patches}
+  %{ for patch in patches }
+  - patch: |
+    ${patch}
+  %{ endfor ~}
+%{ endif }
