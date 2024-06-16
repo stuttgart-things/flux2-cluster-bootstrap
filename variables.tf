@@ -65,10 +65,12 @@ variable "configmaps" {
   description = "A list of configmap objects"
 }
 
-variable "kustomization_patch" {
-  type        = list(string)
+variable "kustomization_patches" {
+  type = list(object({
+    content      = string
+  }))
   default     = []
-  description = "patch"
+  description = "A list of kustomization_patches"
 }
 
 variable "additional_manifests" {
