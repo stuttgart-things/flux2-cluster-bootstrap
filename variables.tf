@@ -67,10 +67,16 @@ variable "configmaps" {
 
 variable "kustomization_patches" {
   type        = string
-  default     = ""
-  nullable    = true
   description = "kustomization_patches"
-}
+  default     = <<-EOT
+  ---
+  apiVersion: kustomize.config.k8s.io/v1beta1
+  kind: Kustomization
+  resources:
+    - gotk-components.yaml
+    - gotk-sync.yaml
+  EOT
+  }
 
 variable "additional_manifests" {
   type = list(object({
