@@ -18,12 +18,12 @@ resource "flux_bootstrap_git" "flux2" {
 
   path       = var.target_path
   components_extra = var.components_extra
-  kustomization_override = yamldecode(templatefile(
+  kustomization_override = templatefile(
     "${path.module}/templates/kustomization-patch.yaml.tpl",
     { 
       kustomization = var.kustomization_patches 
     }
-  ))
+  )
   embedded_manifests     = true
   keep_namespace         = var.keep_namespace
 }
