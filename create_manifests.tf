@@ -1,4 +1,4 @@
-resource "kubernetes_manifest" "k8s_manifest" {
+resource "kubernetes_manifest" "additional_manifests" {
 
   for_each = {
     for manifest in var.additional_manifests :
