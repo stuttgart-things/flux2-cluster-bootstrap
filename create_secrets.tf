@@ -1,6 +1,4 @@
-resource "kubernetes_manifest" "k8s_secret" {
-  depends_on = [flux_bootstrap_git.flux2]
-
+resource "kubernetes_manifest" "k8s_secrets" {
   for_each = {
     for secret in var.secrets :
     secret.name => secret
