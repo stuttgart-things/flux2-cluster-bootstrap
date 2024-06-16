@@ -59,30 +59,48 @@ module "bootstrap-app1" {
   additional_manifests = [
     {
       content = <<-EOT
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: ca-pemstore
-  namespace: flux-system
-data:
-  labul-pve.crt: |-
-    -----BEGIN CERTIFICATE-----
-EOT
+      ---
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: ca-pemstore
+        namespace: flux-system
+      data:
+        labul-pve.crt: |-
+          -----BEGIN CERTIFICATE-----
+      EOT
     },
   ]
 
-  kustomization_patch = <<-EOT
-- patch: |
-    - op: add
-      path: /spec/template/spec/volumes/-
-      value:
-        name: ca-pemstore
-        configMap:
-          name: ca-pemstore
-  target:
-    kind: Deployment
-    name: source-controller
-EOT
+  kustomization_patches = <<-EOT
+  ---
+  apiVersion: kustomize.config.k8s.io/v1beta1
+  kind: Kustomization
+  resources:
+    - gotk-components.yaml
+    - gotk-sync.yaml
+  patches:
+    - patch: |
+        - op: add
+          path: /spec/decryption
+          value:
+            provider: sops
+            secretRef:
+              name: sops-age
+      target:
+        kind: Kustomization
+        name: flux-system
+    - patch: |
+        - op: add
+          path: /spec/template/spec/volumes/-
+          value:
+            name: ca-pemstore
+            configMap:
+              name: ca-pemstore
+      target:
+        kind: Deployment
+        name: source-controller
+  EOT
 }
 
 variable "github_token" { type= string }
