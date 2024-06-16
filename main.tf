@@ -20,4 +20,5 @@ resource "flux_bootstrap_git" "flux2" {
   components_extra = var.components_extra
   kustomization_override = templatefile("${path.module}/templates/kustomization-patch.yaml.tpl", { patch = var.kustomization_patch })
   embedded_manifests     = true
+  keep_namespace         = var.keep_namespace
 }
