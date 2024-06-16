@@ -14,8 +14,7 @@ provider "flux" {
 }
 
 resource "flux_bootstrap_git" "flux2" {
-  depends_on = [kubernetes_manifest.additional_manifests, github_repository_deploy_key.ssh]
-
+  depends_on = [kubernetes_manifest.additional_manifests, github_repository_deploy_key.ssh, kubernetes_manifest.k8s_secrets]
   path       = var.target_path
   components_extra = var.components_extra
   kustomization_override = templatefile(
