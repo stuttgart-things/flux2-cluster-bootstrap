@@ -5,4 +5,4 @@ resources:
   - gotk-components.yaml
   - gotk-sync.yaml
 patches:
-  ${kustomization_patch}
+  ${patches}
