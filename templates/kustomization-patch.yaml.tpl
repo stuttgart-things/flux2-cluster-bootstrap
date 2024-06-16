@@ -7,6 +7,6 @@ resources:
 %{ if length(patches) > 0 }
 patches:
   %{ for patch in patches }
-    ${patch}
+  ${patch}
   %{ endfor ~}
 %{ endif }
