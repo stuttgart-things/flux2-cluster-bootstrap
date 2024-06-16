@@ -4,6 +4,12 @@ variable "context" {
   description = "kube cluster context"
 }
 
+variable "keep_namespace" {
+ description = "Keep namespace after deletion"
+ type        = bool
+ default     = false
+}
+
 variable "components_extra" {
   description = "Extra components"
   type        = list(string)
