@@ -21,7 +21,7 @@ resource "flux_bootstrap_git" "flux2" {
   kustomization_override = yamldecode(templatefile(
     "${path.module}/templates/kustomization-patch.yaml.tpl",
     { 
-      patches = var.kustomization_patches 
+      kustomization = var.kustomization_patches 
     }
   ))
   embedded_manifests     = true
