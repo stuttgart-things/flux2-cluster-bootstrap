@@ -13,7 +13,7 @@ variable "keep_namespace" {
 variable "components_extra" {
   description = "Extra components"
   type        = list(string)
-  default     = ["image-automation-controller"]
+  default     = []
 }
 
 variable "kubeconfig_path" {
